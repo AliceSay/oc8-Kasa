@@ -1,5 +1,5 @@
 import React from 'react'
-import '/LocationGrid.css'
+import './LocationGrid.css'
 import Location from './Location.jsx'
 
 function LocationGrid() {

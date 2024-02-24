@@ -10,9 +10,10 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Banner />
-      <LocationGrid />
-      <Main />
+      <Main>
+        <Banner />
+        <LocationGrid />
+      </Main>
       <Footer />
     </div>
   )
