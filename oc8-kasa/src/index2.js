@@ -1,29 +1,25 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import Home from './pages/Home.jsx'
-import Logement from './pages/Logement.jsx'
-import About from './pages/About.jsx'
-import Error from './pages/Error.jsx'
 import reportWebVitals from './reportWebVitals.js'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import Navbar from './components/Navbar/Navbar.jsx'
 import Footer from './components/Footer/Footer.jsx'
-
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
   <React.StrictMode>
     <Router>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/apartment/:id' element={<Logement />} />
-        <Route path='/about' element={<About />} />
-        <Route path='*' element={<Error />} />
+        <Route path='/' element={App} />
+        <Route path='/logement/:id' element={Logement} />
+        <Route path='/about' element={About} />
+        <Route path='/*' element={Error} />
       </Routes>
       <Footer />
     </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function

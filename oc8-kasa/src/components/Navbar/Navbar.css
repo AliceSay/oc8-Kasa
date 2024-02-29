@@ -18,6 +18,14 @@
   font-weight: 400;
 }
 
+.navbar__accueil {
+  text-decoration: none;
+}
+
+.navbar__apropos {
+  text-decoration: none;
+}
+
 .navbar__accueil:hover {
   cursor: pointer;
   text-decoration: underline;
@@ -25,5 +33,9 @@
 
 .navbar__apropos:hover {
   cursor: pointer;
+  text-decoration: underline;
+}
+
+.navbar a.active {
   text-decoration: underline;
 }

@@ -2,7 +2,8 @@ import React from 'react'
 import './Location.css'
 import { Link } from 'react-router-dom'
 
-function Location() {
+// Paramètres (id)
+function Location({ id }) {
   return (
     <div className='location'>
       <Link to='/apartment'>

@@ -1,20 +1,16 @@
 import React from 'react'
 import './App.css'
-import Navbar from './components/Navbar.jsx'
-import Banner from './components/Banner.jsx'
-import LocationGrid from './components/LocationGrid.jsx'
-import Main from './components/Main.jsx'
-import Footer from './components/Footer.jsx'
+import Main from './components/Main/Main.jsx'
+import Banner from './components/Banner/Banner.jsx'
+import LocationGrid from './components/LocationGrids/LocationGrid.jsx'
 
 function App() {
   return (
     <div>
-      <Navbar />
       <Main>
         <Banner />
         <LocationGrid />
       </Main>
-      <Footer />
     </div>
   )
 }
