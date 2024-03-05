@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
-import Logement from './pages/Logement.jsx'
+import Logement from './pages/ApartmentPage.jsx'
 import About from './pages/About.jsx'
 import Error from './pages/Error.jsx'
 import reportWebVitals from './reportWebVitals.js'
@@ -16,7 +16,7 @@ ReactDOM.render(
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/apartment/:id' element={<Logement />} />
+        <Route path='/apartment' element={<Logement />} />
         <Route path='/about' element={<About />} />
         <Route path='*' element={<Error />} />
       </Routes>

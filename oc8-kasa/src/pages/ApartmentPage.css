@@ -1,0 +1,11 @@
+.apartment-page {
+  color: #ff6060;
+  div:first-child {
+    margin-bottom: 1rem;
+  }
+}
+
+.apartment__description__area {
+  display: flex;
+  gap: 2rem;
+}

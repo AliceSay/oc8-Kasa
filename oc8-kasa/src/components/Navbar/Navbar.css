@@ -20,10 +20,16 @@
 
 .navbar__accueil {
   text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-weight: 450;
 }
 
 .navbar__apropos {
   text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-weight: 450;
 }
 
 .navbar__accueil:hover {

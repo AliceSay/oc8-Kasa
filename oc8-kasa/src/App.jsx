@@ -6,12 +6,10 @@ import LocationGrid from './components/LocationGrids/LocationGrid.jsx'
 
 function App() {
   return (
-    <div>
-      <Main>
-        <Banner />
-        <LocationGrid />
-      </Main>
-    </div>
+    <Main>
+      <Banner />
+      <LocationGrid />
+    </Main>
   )
 }
 
