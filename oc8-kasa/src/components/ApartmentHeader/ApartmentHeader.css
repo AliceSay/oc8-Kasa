@@ -1,5 +1,8 @@
 .apartment__header {
   display: flex;
+  @media screen and (width <= 768px) {
+    flex-direction: column;
+  }
 }
 
 h3 {
@@ -39,12 +42,20 @@ h5 {
 
 .apartment__owner {
   margin-left: auto;
+  @media screen and (width <= 768px) {
+    margin-left: 0;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .apartment__owner__details {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  @media screen and (width <= 768px) {
+    order: 1;
+  }
 }
 
 .apartment__owner__badge {

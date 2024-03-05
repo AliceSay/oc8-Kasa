@@ -1,10 +1,9 @@
 import React from 'react'
 import './ApartmentPage.css'
-
-import logementsData from '../logements.json'
-import ApartmentDescription from '../components/ApartmentDescription/ApartmentDescription.jsx'
-import ApartmentBanner from '../components/ApartmentBanner/ApartmentBanner.jsx'
-import ApartmentHeader from '../components/ApartmentHeader/ApartmentHeader.jsx'
+import logementsData from '../../logements.json'
+import ApartmentDescription from '../../components/ApartmentDescription/ApartmentDescription.jsx'
+import ApartmentBanner from '../../components/ApartmentBanner/ApartmentBanner.jsx'
+import ApartmentHeader from '../../components/ApartmentHeader/ApartmentHeader.jsx'
 
 // function ApartmentPage() {
 //   const logement = logementsData
