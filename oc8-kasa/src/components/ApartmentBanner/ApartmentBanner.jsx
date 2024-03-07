@@ -1,16 +1,10 @@
 import React from 'react'
 import './ApartmentBanner.css'
 
-function ApartmentBanner() {
+function ApartmentBanner(props) {
   return (
     <div>
-      <div>
-        <img
-          className='apartment-img'
-          src='https://picsum.photos/800/400'
-          alt=''
-        />
-      </div>
+      <img className='apartment-img' src={props.imageUrl} alt='' />
     </div>
   )
 }

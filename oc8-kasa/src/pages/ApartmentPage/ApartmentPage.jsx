@@ -1,151 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ApartmentPage.css'
-import logementsData from '../../logements.json'
-import ApartmentDescription from '../../components/ApartmentDescription/ApartmentDescription.jsx'
+import DescriptionPanel from '../../components/ApartmentDescription/DescriptionPanel.jsx'
 import ApartmentBanner from '../../components/ApartmentBanner/ApartmentBanner.jsx'
 import ApartmentHeader from '../../components/ApartmentHeader/ApartmentHeader.jsx'
-
-// function ApartmentPage() {
-//   const logement = logementsData
-
-//   return (
-//     <div className='apartment-page'>
-//       <div>
-//         <img
-//           className='apartment-img'
-//           src={logement.cover}
-//           alt={logement.title}
-//         />
-//       </div>
-//       <div className='apartment__title'>
-//         <h3>{logement.title}</h3>
-//         <h4>{logement.location}</h4>
-//         {logement.tags && logement.tags.length > 0 && (
-//           <p>{logement.tags.join(', ')}</p>
-//         )}
-//       </div>
-//       <div className='apartment__owner'>
-//         {logement.host && (
-//           <>
-//             <h5>{logement.host.name}</h5>
-//             {logement.host.picture && (
-//               <img
-//                 src={logement.host.picture}
-//                 alt={logement.host.name}
-//                 className='host-picture'
-//               />
-//             )}
-//           </>
-//         )}
-//         <div className='apartment__owner__stars'>
-//           <span>☆</span>
-//           <span>☆</span>
-//           <span>☆</span>
-//           <span>☆</span>
-//           <span>☆</span>
-//           {logement.rating}
-//         </div>
-//       </div>
-//       <div className='apartment__description'>
-//         <p>Description</p>
-//         <p>{logement.description}</p>
-//       </div>
-//       {logement.equipments && (
-//         <div className='apartment__equipment'>
-//           <p>Equipements</p>
-//           <ul>
-//             {logement.equipments.map((equipment, index) => (
-//               <li key={index}>{equipment}</li>
-//             ))}
-//           </ul>
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
-
-// export default ApartmentPage
-
-// function ApartmentPage() {
-//   return (
-//     <div className='apartment-page'>
-//       {logementsData.map((logement, index) => (
-//         <div key={index}>
-//           <img
-//             className='apartment-img'
-//             src={logement.cover}
-//             alt={logement.title}
-//           />
-//           <div className='apartment__title'>
-//             <h3>{logement.title}</h3>
-//             <h4>{logement.location}</h4>
-//             {logement.tags && logement.tags.length > 0 && (
-//               <p>{logement.tags.join(', ')}</p>
-//             )}
-//           </div>
-//           <div className='apartment__owner'>
-//             {logement.host && (
-//               <>
-//                 <h5>{logement.host.name}</h5>
-//                 {logement.host.picture && (
-//                   <img
-//                     src={logement.host.picture}
-//                     alt={logement.host.name}
-//                     className='host-picture'
-//                   />
-//                 )}
-//               </>
-//             )}
-//             <div className='apartment__owner__stars'>
-//               {generateRatingStars(logement.rating).map((star, index) => (
-//                 <span key={index}>{star}</span>
-//               ))}
-//             </div>
-//           </div>
-//           <div className='apartment__description'>
-//             <p>Description</p>
-//             <p>{logement.description}</p>
-//           </div>
-//           {logement.equipments && (
-//             <div className='apartment__equipment'>
-//               <p>Equipements</p>
-//               <ul>
-//                 {logement.equipments.map((equipment, index) => (
-//                   <li key={index}>{equipment}</li>
-//                 ))}
-//               </ul>
-//             </div>
-//           )}
-//         </div>
-//       ))}
-//     </div>
-//   )
-// }
-
-// function generateRatingStars(rating) {
-//   const stars = []
-//   const roundedRating = Math.round(rating)
-//   for (let i = 0; i < 5; i++) {
-//     if (i < roundedRating) {
-//       stars.push('★')
-//     } else {
-//       stars.push('☆')
-//     }
-//   }
-//   return stars
-// }
-
-// export default ApartmentPage
+import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function ApartmentPage() {
+  const location = useLocation()
+  const [selectedApartment, setSelectedApartment] = useState(null)
+  const navigate = useNavigate()
+
+  useEffect(fetchApartmentData, [])
+
+  function fetchApartmentData() {
+    fetch('logements.json')
+      .then((res) => res.json())
+      .then((apartments) => {
+        const apartment = apartments.find(
+          (apartment) => apartment.id === location.state.apartmentId
+        )
+        setSelectedApartment(apartment)
+      })
+      .catch(() => navigate('/erreur'))
+  }
+
   return (
     <div className='apartment-page'>
-      <ApartmentBanner />
-      <ApartmentHeader />
-      <div className='apartment__description__area'>
-        <ApartmentDescription />
-        <ApartmentDescription />
-      </div>
+      {selectedApartment ? (
+        <>
+          <ApartmentBanner imageUrl={selectedApartment.cover} />
+          <ApartmentHeader apartment={selectedApartment} />
+          <div className='apartment__description__area'>
+            <DescriptionPanel
+              title='Description'
+              content={selectedApartment.description}
+            />
+            <DescriptionPanel
+              title='Equipements'
+              content={selectedApartment.equipments.map((eq) => (
+                <li>{eq}</li>
+              ))}
+            />
+          </div>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   )
 }

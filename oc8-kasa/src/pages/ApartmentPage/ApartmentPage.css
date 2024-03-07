@@ -8,7 +8,13 @@
 .apartment__description__area {
   display: flex;
   gap: 2rem;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
   @media screen and (width <=768px) {
     flex-direction: column;
   }
+}
+
+li {
+  list-style: none;
 }

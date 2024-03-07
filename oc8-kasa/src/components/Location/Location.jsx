@@ -2,14 +2,16 @@ import React from 'react'
 import './Location.css'
 import { Link } from 'react-router-dom'
 
-// Paramètres (id)
-function Location({ id }) {
+function Location(props) {
   return (
-    <div className='location'>
-      <Link to='/apartment'>
-        <div className='location__subtitle'>Titre de la location</div>
-      </Link>
-    </div>
+    <Link
+      className='location'
+      to='/apartment'
+      state={{ apartmentId: props.id }}
+    >
+      <img className='location__img' src={props.imageUrl} alt='' />
+      <div className='location__subtitle'>{props.title}</div>
+    </Link>
   )
 }
 
