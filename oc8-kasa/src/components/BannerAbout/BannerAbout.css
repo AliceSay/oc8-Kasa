@@ -1,0 +1,13 @@
+.banner-about {
+  position: relative;
+  max-width: 100%;
+  height: 250px;
+  margin: 2rem 0;
+}
+
+.banner-about__img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+}

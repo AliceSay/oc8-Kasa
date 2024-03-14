@@ -3,33 +3,34 @@ import './ApartmentPage.css'
 import DescriptionPanel from '../../components/ApartmentDescription/DescriptionPanel.jsx'
 import ApartmentBanner from '../../components/ApartmentBanner/ApartmentBanner.jsx'
 import ApartmentHeader from '../../components/ApartmentHeader/ApartmentHeader.jsx'
-import { useLocation } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function ApartmentPage() {
-  const location = useLocation()
-  const [selectedApartment, setSelectedApartment] = useState(null)
+  const { id } = useParams()
   const navigate = useNavigate()
+  const [selectedApartment, setSelectedApartment] = useState(null)
 
-  useEffect(fetchApartmentData, [])
-
-  function fetchApartmentData() {
-    fetch('logements.json')
+  useEffect(() => {
+    fetch('/logements.json')
       .then((res) => res.json())
       .then((apartments) => {
-        const apartment = apartments.find(
-          (apartment) => apartment.id === location.state.apartmentId
-        )
-        setSelectedApartment(apartment)
+        const apartment = apartments.find((apartment) => apartment.id === id)
+        if (apartment) {
+          setSelectedApartment(apartment)
+        } else {
+          navigate('/erreur')
+        }
       })
-      .catch(() => navigate('/erreur'))
-  }
+      .catch((error) => {
+        navigate('/erreur')
+      })
+  }, [id, navigate])
 
   return (
     <div className='apartment-page'>
       {selectedApartment ? (
         <>
-          <ApartmentBanner imageUrl={selectedApartment.cover} />
+          <ApartmentBanner pictures={selectedApartment.pictures} />
           <ApartmentHeader apartment={selectedApartment} />
           <div className='apartment__description__area'>
             <DescriptionPanel
@@ -38,8 +39,8 @@ function ApartmentPage() {
             />
             <DescriptionPanel
               title='Equipements'
-              content={selectedApartment.equipments.map((eq) => (
-                <li>{eq}</li>
+              content={selectedApartment.equipments.map((eq, index) => (
+                <li key={index}>{eq}</li>
               ))}
             />
           </div>

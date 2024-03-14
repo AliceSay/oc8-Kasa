@@ -24,11 +24,12 @@
 }
 
 .location__subtitle {
-  width: 50%;
+  width: 65%;
   margin-inline-start: 1rem;
   margin-block-end: 1rem;
   color: white;
   font-weight: 600;
   position: absolute;
   bottom: 20px;
+  font-family: 'Montserrat';
 }

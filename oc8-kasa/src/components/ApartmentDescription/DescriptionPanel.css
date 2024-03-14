@@ -6,33 +6,64 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
+  font-family: 'Montserrat';
 }
 
-i {
+.fa-chevron-up {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.fa-chevron-down {
   font-size: 2rem;
   cursor: pointer;
 }
 
 .description__content {
   background-color: #f6f6f6;
-  color: #ff6060;
+  color: black;
+  font-family: 'Montserrat';
   padding: 1rem;
   border-radius: 0.7rem;
   position: relative;
   top: -0.3rem;
   z-index: -1;
-  animation: slide-in 0.5s ease-in-out;
+  animation-duration: 0.5s;
+}
+
+.description__content.slide-in {
+  animation-name: slide-in;
+}
+
+.description__content.slide-out {
+  animation-name: slide-out;
 }
 
 @keyframes slide-in {
   from {
     transform: translateY(-100%);
   }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
 
 .description__panel {
   margin-bottom: 1rem;
   flex-basis: 50%;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .description__panel p {

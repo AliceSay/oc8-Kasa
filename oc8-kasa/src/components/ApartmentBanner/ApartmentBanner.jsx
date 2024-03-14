@@ -2,9 +2,12 @@ import React from 'react'
 import './ApartmentBanner.css'
 
 function ApartmentBanner(props) {
+  const pictures = props.pictures
   return (
-    <div>
-      <img className='apartment-img' src={props.imageUrl} alt='' />
+    <div className='apartment-img'>
+      {pictures.map((pic) => (
+        <img key={pic} src={pic} alt={pic} />
+      ))}
     </div>
   )
 }

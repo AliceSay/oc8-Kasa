@@ -6,7 +6,7 @@ function Location(props) {
   return (
     <Link
       className='location'
-      to='/apartment'
+      to={`/apartment/${props.id}`}
       state={{ apartmentId: props.id }}
     >
       <img className='location__img' src={props.imageUrl} alt='' />
